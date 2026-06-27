@@ -1,11 +1,33 @@
+# ==========================
+# Telegram Scraping
+# ==========================
 telethon
-pandas
-python-dotenv
 
+# ==========================
+# Configuration Management
+# ==========================
+python-dotenv
+pydantic
+pydantic-settings
+
+# ==========================
+# Data Processing
+# ==========================
+pandas
+
+# ==========================
+# Database
+# ==========================
 sqlalchemy
 psycopg2-binary
 
+# ==========================
+# API
+# ==========================
 fastapi
 uvicorn
 
+# ==========================
+# Testing
+# ==========================
 pytest
