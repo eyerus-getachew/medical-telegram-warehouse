@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: dim_channels
+    description: "Channel dimension table."
+    columns:
+      - name: channel_key
+        description: "Surrogate primary key."
+        tests:
+          - unique
+          - not_null
+      - name: channel_name
+        description: "Telegram channel handle."
+        tests:
+          - unique
+          - not_null
+      - name: channel_type
+        description: "Channel category."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Pharmaceutical', 'Cosmetics', 'Medical']
+
+  - name: dim_dates
+    description: "Date dimension table."
+    columns:
+      - name: date_key
+        description: "Surrogate key YYYYMMDD."
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: "Calendar date."
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_messages
+    description: "Fact table — one row per message."
+    columns:
+      - name: message_id
+        description: "Telegram message ID."
+        tests:
+          - not_null
+      - name: channel_key
+        description: "FK to dim_channels."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_channels')
+              field: channel_key
+      - name: date_key
+        description: "FK to dim_dates."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_key
+      - name: message_date
+        description: "UTC timestamp of the message."
+        tests:
+          - not_null
