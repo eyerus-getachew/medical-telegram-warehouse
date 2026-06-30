@@ -6,6 +6,8 @@ sources:
     tables:
       - name: telegram_messages
         description: "Raw Telegram messages loaded from the data lake."
+      - name: image_detections
+        description: "Raw YOLO object detection results from downloaded images."
 
 models:
   - name: stg_telegram_messages

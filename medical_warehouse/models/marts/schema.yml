@@ -60,3 +60,24 @@ models:
         description: "UTC timestamp of the message."
         tests:
           - not_null
+  - name: fct_image_detections
+    description: "Fact table for YOLO image detection results joined with messages."
+    columns:
+      - name: message_id
+        description: "Telegram message ID."
+        tests:
+          - not_null
+      - name: detected_class
+        description: "YOLO detected object class."
+        tests:
+          - not_null
+      - name: confidence_score
+        description: "Detection confidence score."
+        tests:
+          - not_null
+      - name: image_category
+        description: "Image category."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['promotional', 'product_display', 'lifestyle', 'other']
